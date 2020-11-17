@@ -5,7 +5,7 @@ void	ft_putnbr_base(int n);
 
 void	ft_putnbr_up(unsigned int n);
 
-void	ft_putnbr_p(unsigned long long n);
+void	ft_putnbr_p(unsigned long nu);
 
 int		ft_printf(const char *str, ...)
 {
@@ -38,7 +38,10 @@ int		ft_printf(const char *str, ...)
 		else if (str[i + 1] == 'X')
 			ft_putnbr_up(va_arg(nxtarg, int));
 		else if (str[i + 1] == 'p')
-			ft_putnbr_p(va_arg(nxtarg, long));
+		{
+			write (1, "0x", 2);
+			ft_putnbr_p((unsigned long)va_arg(nxtarg, void*));
+		}
 		if (str[i] == '\0' || str[i + 1] == '\0' || str[i + 2] == '\0')
 			break;
 		i = i + 2;
@@ -91,19 +94,17 @@ void	ft_putnbr_up(unsigned int n)
 	}
 }
 
-void	ft_putnbr_p(unsigned long long n)
+void	ft_putnbr_p(unsigned long nu)
 {
-	char				c;
-	unsigned long long	nu;
+	char			c;
 
-	nu = (unsigned long long)n;
 	if (nu > 9)
 	{
 		if (nu % 16 >= 0 && nu % 16 <= 9)
 			c = nu % 16 + '0';
 		else
 			c = 97 + (nu % 16 - 10);
-		ft_putnbr_base(nu / 16);
+		ft_putnbr_p(nu / 16);
 		write(1, &c, 1);
 	}
 	if (nu <= 9 && nu > 0)
@@ -115,7 +116,7 @@ void	ft_putnbr_p(unsigned long long n)
 #include <stdio.h>
 int		main(void)
 {
-	int a = 100789789;
+	char *a = "100";
 	ft_printf("%p\n", &a);
 	printf("%p\n", &a);
 }
