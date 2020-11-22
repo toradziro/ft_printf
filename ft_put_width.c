@@ -6,7 +6,7 @@
 /*   By: ehillman <ehillman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/18 22:04:10 by ehillman          #+#    #+#             */
-/*   Updated: 2020/11/18 23:39:50 by ehillman         ###   ########.fr       */
+/*   Updated: 2020/11/22 11:32:01 by ehillman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ static int			ft_len(long long int n);
 
 static void		ft_print_spaces(int num, t_struct *info, int arg)
 {
+	if (info->accur < ft_len(arg) && num < ft_len(arg))
+		return ;
 	if (info->accur >= info->width && info->accur > ft_len(arg))
 	{
 		num = info->accur - ft_len(arg);
@@ -33,18 +35,18 @@ static void		ft_print_spaces(int num, t_struct *info, int arg)
 	{
 		while (num > info->accur - ft_len(arg))
 		{
-			write (1, " ", 1);
+			write(1, " ", 1);
 			num--;
 		}
 		while (num--)
-			write (1, "0", 1);
+			write(1, "0", 1);
 	}
-	else if (info->is_zero == 0)
-		while (num--)
-			write(1, " ", 1);
-	else
+	else if (info->is_zero == 1)
 		while (num--)
 			write(1, "0", 1);
+	else
+		while (num--)
+			write(1, " ", 1);
 }
 
 static int			ft_len(long long int n)
@@ -62,6 +64,11 @@ static int			ft_len(long long int n)
 	return (len);
 }
 
+static int			ft_mod(int n)
+{
+	return ((n > 0) ? n : -n);
+}
+
 void			ft_put_width(t_struct *info)
 {
 	int			i;
@@ -71,7 +78,7 @@ void			ft_put_width(t_struct *info)
 	i = 0;
 	if (info->flag == 'd' || info->flag == 'i')
 	{
-		if (info->width > 0 || info->accur > info->width)
+		if (info->width > 0 || info->accur > ft_mod(info->width))
 		{
 			arg = va_arg(info->argument, int);
 			ft_print_spaces(info->width - ft_len(arg), info, arg);

@@ -6,7 +6,7 @@
 /*   By: ehillman <ehillman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/18 20:47:05 by ehillman          #+#    #+#             */
-/*   Updated: 2020/11/18 23:46:07 by ehillman         ###   ########.fr       */
+/*   Updated: 2020/11/22 11:01:46 by ehillman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,12 +82,15 @@ t_struct		ft_parse(const char *str, t_struct *info)
 			while (str[i] >= '0' && str[i] <= '9')
 				i++;
 		}
+		else
+			info->accur = 1;
 		info->flag = ft_find_elem(str[i]);
 	}
 	else
 	{
 		info->flag = ft_find_elem(str[i]);
-		info->width = 0;
+		info->width = 1;
+		info->accur = 1;
 	}
 	return (*info);
 }

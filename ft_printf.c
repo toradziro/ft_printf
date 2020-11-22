@@ -6,7 +6,7 @@
 /*   By: ehillman <ehillman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/18 20:20:24 by ehillman          #+#    #+#             */
-/*   Updated: 2020/11/18 23:46:37 by ehillman         ###   ########.fr       */
+/*   Updated: 2020/11/22 11:38:21 by ehillman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,22 +57,24 @@ int				ft_printf(const char *str, ...)
 #include <stdio.h>
 int		main(void)
 {
-	ft_printf("%*.*d\n", 15, 10, 5); //+ширина > точности
-	printf("%*.*d\n", 15, 10, 5);
-	ft_printf("%*.*d\n", 10, 15, 5); //+ширина < точности
-	printf("%*.*d\n", 10, 15, 5);
-	ft_printf("%*.*d\n", -5, 15, 5); //-ширина
-	printf("%*.*d\n", -5, 15, 5);
-//	ft_printf("%0*.*d\n", 10, 20, 5); //010 ширина 20 точность
-//	printf("%0*.*d\n", 10, 20, 5);
-//	ft_printf("%*.*d\n", -5, 15, 5);
-//	printf("%*.*d\n", -5, 15, 5);
-//	ft_printf("%*.*d\n", -5, 15, 5);
-//	printf("%*.*d\n", -5, 15, 5);
-//	ft_printf("%*.*d\n", -5, 15, 5);
-//	printf("%*.*d\n", -5, 15, 5);
-//	ft_printf("%*.*d\n", -5, 15, 5);
-//	printf("%*.*d\n", -5, 15, 5);
-//	ft_printf("%*.*d\n", -5, 15, 5);
-//	printf("%*.*d\n", -5, 15, 5);
+	ft_printf("test 1: %*.*d\n", 15, 10, 5); //+ширина > точности
+	printf("test 1: %*.*d\n", 15, 10, 5);
+	ft_printf("test 2: %*.*d\n", 10, 15, 5); //+ширина < точности
+	printf("test 2: %*.*d\n", 10, 15, 5);
+	ft_printf("test 3: %*.*d\n", -5, 15, 5); //-ширина
+	printf("test 3: %*.*d\n", -5, 15, 5);
+	ft_printf("Test 4: %.10d\n", 5); // точность больше числа
+	printf("test 4: %.10d\n", 5);
+	ft_printf("Test 5: %.1d\n", 15); // точность меньше числа
+	printf("test 5: %.1d\n", 15);
+	ft_printf("test 6: %10d\n", 15); // ширина больше числа
+	printf("test 6: %10d\n", 15);
+	ft_printf("test 7: %1d\n", 15); // ширина меньше числа
+	printf("test 7: %1d\n", 15);
+	ft_printf("test 8: %-10d\n", 15); // ширина отрицательная
+	printf("test 8: %-10d\n", 15);
+	ft_printf("test 9: %010d\n", 15); // ширина 0
+	printf("test 9: %010d\n", 15);
+	ft_printf("test 10: %d, %i, %d, %d, %i\n", 15, 123123, 43, 56564, -3478534);
+	printf("test 10: %d, %i, %d, %d, %i\n", 15, 123123, 43, 56564, -3478534);
 }
