@@ -24,14 +24,13 @@
 
 int				ft_printf(const char *str, ...)
 {
-	va_list		argument;
 	int			ret;
 	int			i;
 	t_struct	info;
 
 	ret = 0;
 	i = 0;
-	va_start(argument, str);
+	va_start(info.argument, str);
 	while (str[i] != '\0')
 	{
 		while (str[i] != '%' && str[i] != '\0')
@@ -45,19 +44,35 @@ int				ft_printf(const char *str, ...)
 		if (str[i] == '%')
 		{
 			i++;
-			info = ft_parse(&str[i], info);
-			ft_put_width(argument, info);
+			info = ft_parse(&str[i], &info);
+			ft_put_width(&info);
 		}
 		while (!ft_find_elem(str[i]))
 			i++;
 		i++;
 	}
-	va_end(argument);
+	va_end(info.argument);
 	return (0);
 }
 #include <stdio.h>
 int		main(void)
 {
-	ft_printf("%-10d\n", 10);
-	printf("%-10d\n", 10);
+	ft_printf("%*.*d\n", 15, 10, 5); //+ширина > точности
+	printf("%*.*d\n", 15, 10, 5);
+	ft_printf("%*.*d\n", 10, 15, 5); //+ширина < точности
+	printf("%*.*d\n", 10, 15, 5);
+	ft_printf("%*.*d\n", -5, 15, 5); //-ширина
+	printf("%*.*d\n", -5, 15, 5);
+//	ft_printf("%0*.*d\n", 10, 20, 5); //010 ширина 20 точность
+//	printf("%0*.*d\n", 10, 20, 5);
+//	ft_printf("%*.*d\n", -5, 15, 5);
+//	printf("%*.*d\n", -5, 15, 5);
+//	ft_printf("%*.*d\n", -5, 15, 5);
+//	printf("%*.*d\n", -5, 15, 5);
+//	ft_printf("%*.*d\n", -5, 15, 5);
+//	printf("%*.*d\n", -5, 15, 5);
+//	ft_printf("%*.*d\n", -5, 15, 5);
+//	printf("%*.*d\n", -5, 15, 5);
+//	ft_printf("%*.*d\n", -5, 15, 5);
+//	printf("%*.*d\n", -5, 15, 5);
 }

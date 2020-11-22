@@ -18,15 +18,16 @@
 
 typedef struct		s_struct
 {
+	va_list			argument;
 	char			flag;
 	int				accur;
 	int				width;
 //	int				is_minus;
-//	int				is_zero;
+	int				is_zero;
 }					t_struct;
 
-t_struct		ft_parse(const char *str, t_struct info);
-void			ft_put_width(va_list argument, t_struct info);
+t_struct		ft_parse(const char *str, t_struct *info);
+void			ft_put_width(t_struct *info);
 int				ft_find_elem(char c);
 
 #endif
