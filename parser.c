@@ -6,7 +6,7 @@
 /*   By: ehillman <ehillman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/18 20:47:05 by ehillman          #+#    #+#             */
-/*   Updated: 2020/11/22 11:01:46 by ehillman         ###   ########.fr       */
+/*   Updated: 2020/11/22 14:48:07 by ehillman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,50 @@
  * трукру
 */
 
-int		ft_find_elem(char c)
+static int		ft_parse_width(const char *str, t_struct *info, int i)
 {
-	char	*flags;
-	int		i;
-
-	flags = "cspdiuxX";
-	i = 0;
-	while (flags[i] != '\0')
+	if (str[i] == '0' && (str[i + 1] >= '0' && str[i + 1] <= '9'))
 	{
-		if (c == flags[i])
-			return ((int)flags[i]);
+		info->is_zero = 1;
 		i++;
 	}
-	return (0);
+	else
+		info->is_zero = 0;
+	if (str[i] == '*')
+	{
+		info->width = va_arg(info->argument, int);
+		i++;
+	}
+	else if (str[i] == '-' && str[i + 1] == '*')
+	{
+		info->width = -va_arg(info->argument, int);
+		i = i + 2;
+	}
+	else if ((str[i] >= '0' && str[i] <= '9') || str[i] == '-')
+	{
+		info->width = ft_atoi(&str[i]);
+		while ((str[i] >= '0' && str[i] <= '9') || str[i] == '-')
+			i++;
+	}
+	else
+		info->width = 1;
+	if (info->width == 0)
+		info->width = 1;
+	return (i);
+}
+
+static int		ft_parse_accur(const char *str, t_struct *info, int i)
+{
+	if (str[i] == '*')
+	{
+		info->accur = va_arg(info->argument, int);
+		i++;
+	}
+	else if (str[i] >= '0' && str[i] <= '9')
+		info->accur = ft_atoi(&str[i]);
+	while (str[i] >= '0' && str[i] <= '9')
+		i++;
+	return (i);
 }
 
 t_struct		ft_parse(const char *str, t_struct *info)
@@ -40,50 +70,14 @@ t_struct		ft_parse(const char *str, t_struct *info)
 	i = 0;
 	if (ft_find_elem(str[i]) == 0)
 	{
-		if (str[i] == '0' && (str[i + 1] >= '0' && str[i + 1] <= '9'))
-		{
-			info->is_zero = 1;
-			i++;
-		}
-		else
-			info->is_zero = 0;
-		if (str[i] == '*')
-		{
-			info->width = va_arg(info->argument, int);
-			i++;
-		}
-		else if (str[i] == '-' && str[i + 1] == '*')
-		{
-			info->width = -va_arg(info->argument, int);
-			i = i + 2;
-		}
-		else if ((str[i] >= '0' && str[i] <= '9') || str[i] == '-')
-		{
-			info->width = ft_atoi(&str[i]);
-			while ((str[i] >= '0' && str[i] <= '9') || str[i] == '-')
-				i++;
-		}
-		else
-			info->width = 1;
-		if (info->width == 0)
-			info->width = 1;
+		i = ft_parse_width(str, info, i);
 		if (str[i] == '.')
 		{
 			i++;
-			if (str[i] == '*')
-			{
-				info->accur = va_arg(info->argument, int);
-				i++;
-			}
-			else if (str[i] >= '0' && str[i] <= '9')
-				info->accur = ft_atoi(&str[i]);
-			else
-				info->accur = 1;
-			while (str[i] >= '0' && str[i] <= '9')
-				i++;
+			i = ft_parse_accur(str, info, i);
 		}
 		else
-			info->accur = 1;
+			info->accur = -1;
 		info->flag = ft_find_elem(str[i]);
 	}
 	else
