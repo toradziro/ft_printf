@@ -6,7 +6,7 @@
 /*   By: ehillman <ehillman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/18 20:20:24 by ehillman          #+#    #+#             */
-/*   Updated: 2020/11/22 16:01:00 by ehillman         ###   ########.fr       */
+/*   Updated: 2020/11/23 21:29:06 by ehillman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,13 @@ void		ft_check_spec(t_struct *info)
 		ft_print_int(info);
 	else if (info->flag == 's')
 		ft_print_str(info);
-/*	else if (info->flag == 'c')
+	else if (info->flag == 'c')
 		ft_print_char(info);
 	else if (info->flag == 'x')
 		ft_print_hex_low(info);
 	else if (info->flag == 'X')
 		ft_print_hex_up(info);
-	else if (info->flag == 'p')
+/*	else if (info->flag == 'p')
 		ft_print_adress(info);
 	else if (info->flag == 'u')
 		ft_print_unsigned(info); */
@@ -76,7 +76,7 @@ void		ft_check_spec(t_struct *info)
 #include <stdio.h>
 int		main(void)
 {
-	ft_printf("test 1 'd': %*.*d\n", 15, 10, 5); //+ширина > точности
+/*	ft_printf("test 1 'd': %*.*d\n", 15, 10, 5); //+ширина > точности
 	printf("test 1 'd': %*.*d\n", 15, 10, 5);
 	ft_printf("test 2 'd': %*.*d\n", 10, 15, 5); //+ширина < точности
 	printf("test 2 'd': %*.*d\n", 10, 15, 5);
@@ -112,4 +112,32 @@ int		main(void)
 	printf("test 7 's': %40.5s\n", "Hello my dear friend");
 	ft_printf("test 8 's': %-40.5s\n", "Hello my dear friend"); // -ширина и точность меньше строки
 	printf("test 8 's': %-40.5s\n", "Hello my dear friend");
+	ft_printf("%c\n", 'c');
+	printf("%c\n", 'c');
+	ft_printf("%10c\n", 'c');
+	printf("%10c\n", 'c');
+	ft_printf("%-10c\n", 'c');
+	printf("%-10c\n", 'c');
+	ft_printf("%*c\n", 10, 'c');
+	printf("%*c\n", 10, 'c');
+	ft_printf("%*c\n", -10, 'c');
+	printf("%*c\n", -10, 'c');
+	ft_printf("test 1 'x': %*.*X\n", 15, 10, 3452011); //+ширина > точности
+	printf("test 1 'x': %*.*X\n", 15, 10, 3452011);
+	ft_printf("test 2 'x': %*.*X\n", 10, 15, 3452011); //+ширина < точности
+	printf("test 2 'x': %*.*X\n", 10, 15, 3452011);
+	ft_printf("test 3 'x': %*.*X\n", -5, 15, 3452011); //-ширина
+	printf("test 3 'x': %*.*X\n", -5, 15, 3452011);
+	ft_printf("Test 4 'x': %.10X\n", 3452011); // точность больше числа
+	printf("test 4 'x': %.10X\n", 3452011);
+	ft_printf("Test 5 'x': %.1X\n", 3452011); // точность меньше числа
+	printf("test 5 'x': %.1X\n", 3452011);
+	ft_printf("test 6 'x': %10X\n", 3452011); // ширина больше числа
+	printf("test 6 'x': %10X\n", 3452011);
+	ft_printf("test 7 'x': %1X\n", 3452011); // ширина меньше числа
+	printf("test 7 'x': %1X\n", 3452011);
+	ft_printf("test 8 'x': %-10X\n", 3452011); // ширина отрицательная
+	printf("test 8 'x': %-10X\n", 3452011);
+	ft_printf("test 9 'x': %010X\n", 3452011); // ширина 0
+	printf("test 9 'x': %010X\n", 3452011); */
 }

@@ -6,7 +6,7 @@
 /*   By: ehillman <ehillman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/18 22:04:10 by ehillman          #+#    #+#             */
-/*   Updated: 2020/11/22 16:21:12 by ehillman         ###   ########.fr       */
+/*   Updated: 2020/11/23 21:28:48 by ehillman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void		ft_print_spaces(int num, t_struct *info, int arg)
 {
 	int			tmp;
 
-	if (info->accur < ft_len(arg) && num < ft_len(arg))
+	if (info->accur < ft_len(arg) && ft_mod(info->width) < ft_len(arg))
 		return ;
 	if (info->accur >= info->width && info->accur > ft_len(arg))
 		ft_put_zero(info->accur - ft_len(arg));

@@ -6,7 +6,7 @@
 /*   By: ehillman <ehillman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/22 14:09:40 by ehillman          #+#    #+#             */
-/*   Updated: 2020/11/22 14:11:58 by ehillman         ###   ########.fr       */
+/*   Updated: 2020/11/23 19:20:53 by ehillman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,19 @@ int		ft_find_elem(char c)
 		i++;
 	}
 	return (0);
+}
+
+void	ft_putstr(char *s, int n)
+{
+	if (n == -1)
+		while (*s)
+		{
+			write(1, s, 1);
+			s++;
+		}
+	while (*s && n--)
+	{
+		write(1, s, 1);
+		s++;
+	}
 }

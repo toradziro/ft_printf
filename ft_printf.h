@@ -6,7 +6,7 @@
 /*   By: ehillman <ehillman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/18 19:51:03 by ehillman          #+#    #+#             */
-/*   Updated: 2020/11/22 14:10:49 by ehillman         ###   ########.fr       */
+/*   Updated: 2020/11/23 21:24:19 by ehillman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,9 @@ int				ft_len(long long int n);
 void			ft_put_zero(int n);
 void			ft_put_space(int n);
 int				ft_mod(int n);
+void			ft_putstr(char *s, int n);
+void			ft_print_char(t_struct *info);
+void			ft_print_hex_low(t_struct *info);
+void			ft_print_hex_up(t_struct *info);
 
 #endif
