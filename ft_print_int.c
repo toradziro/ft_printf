@@ -6,7 +6,7 @@
 /*   By: ehillman <ehillman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/18 22:04:10 by ehillman          #+#    #+#             */
-/*   Updated: 2020/11/23 21:28:48 by ehillman         ###   ########.fr       */
+/*   Updated: 2020/11/25 20:10:06 by ehillman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ static void		ft_print_spaces(int num, t_struct *info, int arg)
 void			ft_print_int(t_struct *info)
 {
 	int			i;
-	int			len;
 	int			arg;
 
 	i = 0;

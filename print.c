@@ -113,6 +113,8 @@ void	ft_putnbr_p(unsigned long nu)
 		write(1, &c, 1);
 	}
 }
+
+
 #include <stdio.h>
 int		main(void)
 {

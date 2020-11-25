@@ -3,10 +3,11 @@
 
 int		main(void)
 {
-	ft_printf("test 1 'd': %*.*d\n", 15, 10, 5); //+ширина > точности
+	static char *s_hidden = "hi low\0don't print me lol\0";
+/*	ft_printf("test 1 'd': %*.*d\n", 15, 10, 5); //+ширина > точности
 	printf("test 1 'd': %*.*d\n", 15, 10, 5);
-	ft_printf("test 2 'd': %*.*d\n", 10, 15, 5); //+ширина < точности
-	printf("test 2 'd': %*.*d\n", 10, 15, 5);
+	ft_printf("test 2 'd': %-3.d\n", 10); //+ширина < точности
+	printf("test 2 'd': %-3.d\n", 10);
 	ft_printf("test 3 'd': %*.*d\n", -5, 15, 5); //-ширина
 	printf("test 3 'd': %*.*d\n", -5, 15, 5);
 	ft_printf("Test 4 'd': %.10d\n", 5); // точность больше числа
@@ -22,9 +23,9 @@ int		main(void)
 	ft_printf("test 9 'd': %010d\n", 15); // ширина 0
 	printf("test 9 'd': %010d\n", 15);
 	ft_printf("test 10 'd': %d, %i, %d, %d, %i\n", 15, 123123, 43, 56564, -3478534);
-	printf("test 10 'd': %d, %i, %d, %d, %i\n", 15, 123123, 43, 56564, -3478534);
-	ft_printf("test 1 's': %40s\n", "Hello my dear friend"); // +ширина
-	printf("test 1 's': %40s\n", "Hello my dear friend");
+	printf("test 10 'd': %d, %i, %d, %d, %i\n", 15, 123123, 43, 56564, -3478534); */
+	ft_printf("%% \n"); // +ширина
+	/*printf("%% \n");
 	ft_printf("test 2 's': %-40s\n", "Hello my dear friend"); // -ширина
 	printf("test 2 's': %-40s\n", "Hello my dear friend");
 	ft_printf("test 3 's': %.40s\n", "Hello my dear friend"); // точность больше строки
@@ -66,5 +67,5 @@ int		main(void)
 	ft_printf("test 8 'x': %-10X\n", 3452011); // ширина отрицательная
 	printf("test 8 'x': %-10X\n", 3452011);
 	ft_printf("test 9 'x': %010X\n", 3452011); // ширина 0
-	printf("test 9 'x': %010X\n", 3452011);
+	printf("test 9 'x': %010X\n", 3452011); */
 }

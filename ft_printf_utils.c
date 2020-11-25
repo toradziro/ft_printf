@@ -6,7 +6,7 @@
 /*   By: ehillman <ehillman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/22 14:09:40 by ehillman          #+#    #+#             */
-/*   Updated: 2020/11/23 19:20:53 by ehillman         ###   ########.fr       */
+/*   Updated: 2020/11/25 21:26:51 by ehillman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int		ft_find_elem(char c)
 	char	*flags;
 	int		i;
 
-	flags = "cspdiuxX";
+	flags = "cspdiuxX%";
 	i = 0;
 	while (flags[i] != '\0')
 	{

@@ -6,7 +6,7 @@
 /*   By: ehillman <ehillman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/18 20:20:24 by ehillman          #+#    #+#             */
-/*   Updated: 2020/11/23 21:29:06 by ehillman         ###   ########.fr       */
+/*   Updated: 2020/11/25 21:29:22 by ehillman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,13 @@ int				ft_printf(const char *str, ...)
 	int			ret;
 	int			i;
 	t_struct	info;
+	char		t;
 
+	t = '%';
 	ret = 0;
 	i = 0;
+	if (!str)
+		return (0);
 	va_start(info.argument, str);
 	while (str[i] != '\0')
 	{
@@ -70,5 +74,7 @@ void		ft_check_spec(t_struct *info)
 /*	else if (info->flag == 'p')
 		ft_print_adress(info);
 	else if (info->flag == 'u')
-		ft_print_unsigned(info); */
+		ft_print_unsigned(info);
+	else if (info->flag == '%')
+		ft_print_percent(info); */
 }

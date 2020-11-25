@@ -6,7 +6,7 @@
 /*   By: ehillman <ehillman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/18 20:47:05 by ehillman          #+#    #+#             */
-/*   Updated: 2020/11/22 14:48:07 by ehillman         ###   ########.fr       */
+/*   Updated: 2020/11/25 21:00:52 by ehillman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,9 @@ t_struct		ft_parse(const char *str, t_struct *info)
 	{
 		i = ft_parse_width(str, info, i);
 		if (str[i] == '.')
-		{
 			i++;
+		if (ft_find_elem(str[i] == 0))
 			i = ft_parse_accur(str, info, i);
-		}
 		else
 			info->accur = -1;
 		info->flag = ft_find_elem(str[i]);

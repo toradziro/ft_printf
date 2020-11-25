@@ -16,12 +16,10 @@ OBJS	=	ft_printf.o ft_print_char.o \
 
 CC = gcc
 
-FLAGS = -c
-
-#INCLUDES = -I.
+FLAGS = -c -Wall -Wextra -Werror
 
 .c.o:
-	${CC} -c $< -o ${<:.c=.o} #${INCLUDES}
+	${CC} -c $< -o ${<:.c=.o}
 
 $(NAME):	${OBJS}
 			${CC} ${FLAGS} ${SRC}
