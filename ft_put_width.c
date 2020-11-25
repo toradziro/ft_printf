@@ -19,7 +19,7 @@
 */
 #include "ft_printf.h"
 
-static int			ft_len(long long int n);
+//static int			ft_len(long long int n);
 
 static void		ft_print_spaces(int num, t_struct *info, int arg)
 {
@@ -49,25 +49,25 @@ static void		ft_print_spaces(int num, t_struct *info, int arg)
 			write(1, " ", 1);
 }
 
-static int			ft_len(long long int n)
-{
-	int				len;
+//static int			ft_len(long long int n)
+//{
+//	int				len;
+//
+//	len = 0;
+//	if (n < 0)
+//		len++;
+//	while (n != 0)
+//	{
+//		n /= 10;
+//		len++;
+//	}
+//	return (len);
+//}
 
-	len = 0;
-	if (n < 0)
-		len++;
-	while (n != 0)
-	{
-		n /= 10;
-		len++;
-	}
-	return (len);
-}
-
-static int			ft_mod(int n)
-{
-	return ((n > 0) ? n : -n);
-}
+//static int			ft_mod(int n)
+//{
+//	return ((n > 0) ? n : -n);
+//}
 
 void			ft_put_width(t_struct *info)
 {
