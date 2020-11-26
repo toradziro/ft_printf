@@ -6,7 +6,7 @@
 /*   By: ehillman <ehillman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/18 19:51:03 by ehillman          #+#    #+#             */
-/*   Updated: 2020/11/25 19:27:48 by ehillman         ###   ########.fr       */
+/*   Updated: 2020/11/26 19:08:25 by ehillman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,6 @@ void			ft_print_hex_up(t_struct *info);
 int				ft_atoi(const char *str);
 void			ft_putnbr_fd(int n, int fd);
 size_t 			ft_strlen(const char *str);
+void			ft_print_percent(t_struct *info);
 
 #endif

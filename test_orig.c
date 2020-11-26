@@ -2,5 +2,5 @@
 
 int main(void)
 {
-	printf("%5.150s\n", "Hello my dear friend");
+	printf("%5.s", "");
 }
