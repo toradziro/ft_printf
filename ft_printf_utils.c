@@ -6,7 +6,7 @@
 /*   By: ehillman <ehillman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/22 14:09:40 by ehillman          #+#    #+#             */
-/*   Updated: 2020/11/26 21:53:57 by ehillman         ###   ########.fr       */
+/*   Updated: 2020/11/27 21:25:22 by ehillman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int			ft_len(long long int n)
 	int				len;
 
 	len = 0;
+	if (n == 0)
+		return (1);
 	if (n < 0)
 		len++;
 	while (n != 0)

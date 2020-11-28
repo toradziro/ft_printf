@@ -5,8 +5,27 @@ int		main(void)
 {
 	static char *s_hidden = "hi low\0don't print me lol\0";
 
-	ft_printf("%3.s\n", "");
-/*	ft_printf("%s\n", NULL);
+	ft_printf("%08.3d\n", 8375);
+	printf("%08.3d\n", 8375);
+//	printf("%10d ---width 10\n", 0);
+	// ft_printf("%-10d\n", 0);
+	// printf("%-10d ---width -10\n", 0);
+	// ft_printf("%10.5d\n", 0);
+ 	// printf("%10.5d ---width 10 accur 5\n", 0);
+	// ft_printf("%-10.5d\n", 0);
+	// printf("%-10.5d ---width -10 accur 5\n", 0);
+	// ft_printf("%10.d\n", 0);
+	// printf("%10.d ---width 10 accur .\n", 0);
+	// ft_printf("%-10.d\n", 0);
+	// printf("%-10.d ---width -10 accur .\n", 0);
+	// ft_printf("%5.10d\n", 0);
+	// printf("%5.10d ---width 5 accur 10 \n", 0);
+	// ft_printf("%-15.10d\n", 0);
+	// printf("%-15.10d ---width -15 accur 10 \n", 0);
+
+/*	ft_printf("%3d\n", 0);
+	printf("%3d\n", 0);
+	ft_printf("%s\n", NULL);
 	ft_printf("test 1 'd': %*.*d\n", 15, 10, 5); //+ширина > точности
 	printf("test 1 'd': %*.*d\n", 15, 10, 5);
 	ft_printf("test 2 'd': %-3.d\n", 10); //+ширина < точности
