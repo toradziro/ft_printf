@@ -6,13 +6,15 @@
 /*   By: ehillman <ehillman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 21:20:49 by ehillman          #+#    #+#             */
-/*   Updated: 2020/11/25 20:01:58 by ehillman         ###   ########.fr       */
+/*   Updated: 2020/12/01 20:35:35 by ehillman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	ft_putnbr_base(int n)
+#include "ft_printf.h"
+
+static void	ft_putnbr_base(unsigned int n)
 {
 	char			c;
 	unsigned int	nu;
@@ -47,46 +49,133 @@ static int			ft_len_hex(long long int n)
 	return (len);
 }
 
-static void		ft_print_spaces(int num, t_struct *info, int arg)
+static void		ft_print_spaces_int(int num, int arg, int edge) //edge 0 - +width, edge 1 - -width
 {
-	int			tmp;
-
-	if (info->accur < ft_len_hex(arg) && ft_mod(info->width) < ft_len_hex(arg))
-		return ;
-	if (info->accur >= info->width && info->accur > ft_len_hex(arg))
-		ft_put_zero(info->accur - ft_len_hex(arg));
-	else if (info->accur < info->width && info->accur > ft_len_hex(arg))
+	if (!edge)
 	{
-			tmp = info->width - info->accur;
-			ft_put_space(tmp);
-			ft_put_zero(num - tmp);
-	}
-	else if (info->is_zero == 1)
-		ft_put_zero(num);
-	else
 		ft_put_space(num);
+		if (arg == 0)
+			write(1, "0", 1);
+		else
+			ft_putnbr_base(arg);
+	}
+	else
+	{
+		if (arg == 0)
+			write(1, "0", 1);
+		else
+			ft_putnbr_base(arg);
+		ft_put_space(num);
+	}
+}
+
+static void		ft_print_zeros_int(int num, int arg, int edge)
+{
+	if (!edge)
+	{
+		ft_put_zero(num);
+		if (arg == 0)
+			write(1, "0", 1);
+		else
+			ft_putnbr_base(arg);
+	}
+	else
+	{
+		if (arg == 0)
+			write(1, "0", 1);
+		else
+			ft_putnbr_base(arg);
+		ft_put_zero(num);
+	}
+
+}
+
+static void		ft_print_positive_hex(t_struct *info, unsigned int arg, int len)
+{
+	if (info->width > 0 && info->accur < len && info->width > len)
+	{
+		if (info->is_zero == 1 && info->accur < 0)
+			ft_print_zeros_int(info->width - len, arg, 0);
+		else
+			ft_print_spaces_int(info->width - len, arg, 0);
+		return ;
+	}
+	else if (info->accur > len && info->width > info->accur)
+	{
+		ft_put_space(info->width - info->accur);
+		ft_put_zero(info->accur - len);
+		ft_putnbr_base(arg);
+	}
+	else if (info->accur > ft_mod(info->width) && info->accur > len)
+	{
+		if (info->width == 0)
+			ft_print_zeros_int(info->accur - len - 1, arg, 0);
+		else
+			ft_print_zeros_int(info->accur - len, arg, 0);
+	}
+	else if (info->width < 0 && info->accur < len)
+	{
+		ft_print_spaces_int(ft_mod(info->width) - len, arg, 1);
+	}
+	else if (info->width < 0 && info->accur > len)
+	{
+		ft_put_zero(info->accur - len);
+		ft_putnbr_base(arg);
+		ft_put_space(ft_mod(info->width) - info->accur);
+	}
+	else
+		ft_putnbr_base(arg);
+
+}
+
+static void		ft_print_zero_hex(t_struct *info, unsigned int arg)
+{
+	if (info->accur == -2)
+	{
+		ft_put_space(ft_mod(info->width));
+		return ;
+	}
+	else if (info->width > 0 && info->accur <= 1)
+	{
+		if (info->is_zero)
+			ft_print_zeros_int(info->width - 1, arg, 0);
+		else if (info->accur)
+			ft_print_spaces_int(info->width - 1, arg, 0);
+		else
+			ft_put_space(info->width);
+	}
+	else if (info->width < 0 && info->accur == 0)
+		ft_put_space(ft_mod(info->width));
+	else if (info->width < 0 && info->accur < 1)
+		ft_print_spaces_int(ft_mod(info->width) - 1, arg, 1);
+	else if (info->accur > 1 && info->width > info->accur)
+	{
+		ft_put_space(info->width - info->accur);
+		ft_put_zero(info->accur - 1);
+		write(1, "0", 1);
+	}
+	else if (info->accur > ft_mod(info->width) && info->accur > 1)
+		ft_print_zeros_int(info->accur - 1, ft_mod(arg), 0);
+	else if (info->width < 0 && info->accur > 1)
+	{
+		ft_print_zeros_int(info->accur - 1, arg, 0);
+		ft_put_space(ft_mod(info->width) - info->accur);
+	}
+	else if (info->accur == 0)
+		return ;
+	else
+		write(1, "0", 1);
 }
 
 void			ft_print_hex_up(t_struct *info)
 {
-	int			i;
-	int			arg;
+	unsigned int			arg;
+	int						len;
 
-	i = 0;
-	if (info->width > 0 || info->accur > ft_mod(info->width))
-	{
-		arg = va_arg(info->argument, int);
-		ft_print_spaces(info->width - ft_len_hex(arg), info, arg);
-		ft_putnbr_base(arg);
-		return ;
-	}
-	if (info->width < 0)
-	{
-		arg = va_arg(info->argument, int);
-		ft_putnbr_base(arg);
-		ft_print_spaces(-info->width - ft_len_hex(arg), info, arg);
-		return ;
-	}
-	ft_putnbr_base(va_arg(info->argument, int));
+	arg = va_arg(info->argument, int);
+	len = ft_len_hex(arg);
+	if (arg > 0)
+		ft_print_positive_hex(info, arg, len);
+	else
+		ft_print_zero_hex(info, arg);
 }
-

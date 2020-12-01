@@ -1,4 +1,4 @@
-#include "libft/libft.h"
+#include "ft_printf.h"
 #include <stdarg.h>
 
 void	ft_putnbr_base(int n);
@@ -24,10 +24,10 @@ int		ft_printf(const char *str, ...)
 		}
 		if (str[i] == '\0')
 			break;
-		if (str[i + 1] == 's')
-			ft_putstr_fd(va_arg(nxtarg, char*), 1);
-		else if (str[i + 1] == 'd' || str[i + 1] == 'i')
-			ft_putnbr_fd(va_arg(nxtarg, int), 1);
+		//if (str[i + 1] == 's')
+		//	ft_putstr_fd(va_arg(nxtarg, char*), 1);
+		if (str[i + 1] == 'd' || str[i + 1] == 'i')
+		 	ft_putnbr_fd(va_arg(nxtarg, int), 1);
 		else if (str[i + 1] == 'c')
 		{
 			r = va_arg(nxtarg, int);
@@ -118,7 +118,7 @@ void	ft_putnbr_p(unsigned long nu)
 #include <stdio.h>
 int		main(void)
 {
-	char *a = "100";
+	static char *a = "100";
 	ft_printf("%p\n", &a);
 	printf("%p\n", &a);
 }

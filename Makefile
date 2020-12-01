@@ -5,14 +5,16 @@ SRC		= 	ft_printf.c ft_print_char.c \
 			ft_print_int.c ft_print_str.c \
 			ft_printf_utils.c \
 			parser.c ft_atoi.c ft_putnbr_fd.c \
-			ft_strlen.c ft_print_percent.c
+			ft_strlen.c ft_print_percent.c \
+			ft_print_unsigned.c ft_print_adress.c
 
 OBJS	=	ft_printf.o ft_print_char.o \
             ft_print_hex_low.o ft_print_hex_up.o \
             ft_print_int.o ft_print_str.o \
             ft_printf_utils.o \
             parser.o ft_atoi.o ft_putnbr_fd.o \
-            ft_strlen.o ft_print_percent.o
+            ft_strlen.o ft_print_percent.o \
+			ft_print_unsigned.o ft_print_adress.o
 
 CC = gcc
 

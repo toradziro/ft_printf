@@ -6,7 +6,7 @@
 /*   By: ehillman <ehillman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/18 20:47:05 by ehillman          #+#    #+#             */
-/*   Updated: 2020/11/27 00:39:24 by ehillman         ###   ########.fr       */
+/*   Updated: 2020/12/01 20:26:16 by ehillman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,18 @@
 
 static int		ft_parse_width(const char *str, t_struct *info, int i)
 {
-	if (str[i] == '0' && (str[i + 1] >= '0' && str[i + 1] <= '9'))
+	if (str[i] == '0') //&& (str[i + 1] >= '0' && str[i + 1] <= '9'))
 	{
 		info->is_zero = 1;
 		i++;
 	}
 	else
 		info->is_zero = 0;
+	// if (str[i] == '.')
+	// {
+	// 	info->width = -1;
+	// 	i++;
+	// }
 	if (str[i] == '*')
 	{
 		info->width = va_arg(info->argument, int);

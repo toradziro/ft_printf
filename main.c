@@ -5,8 +5,8 @@ int		main(void)
 {
 	static char *s_hidden = "hi low\0don't print me lol\0";
 
-	ft_printf("%08.3d\n", 8375);
-	printf("%08.3d\n", 8375);
+	ft_printf("%p\n", &s_hidden);
+	printf("%p\n", &s_hidden);
 //	printf("%10d ---width 10\n", 0);
 	// ft_printf("%-10d\n", 0);
 	// printf("%-10d ---width -10\n", 0);

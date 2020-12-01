@@ -6,7 +6,7 @@
 /*   By: ehillman <ehillman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/18 20:20:24 by ehillman          #+#    #+#             */
-/*   Updated: 2020/11/26 21:49:23 by ehillman         ###   ########.fr       */
+/*   Updated: 2020/12/01 22:32:57 by ehillman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,10 @@ void		ft_check_spec(t_struct *info)
 		ft_print_hex_low(info);
 	else if (info->flag == 'X')
 		ft_print_hex_up(info);
-/*	else if (info->flag == 'p')
+	else if (info->flag == 'p')
 		ft_print_adress(info);
 	else if (info->flag == 'u')
-		ft_print_unsigned(info); */
+		ft_print_unsigned(info);
 	else if (info->flag == '%')
 		ft_print_percent(info);
 }
