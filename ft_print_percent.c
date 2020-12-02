@@ -16,10 +16,10 @@ static void		ft_print_spaces(int num, t_struct *info)
 {
 	if (info->is_zero)
 	{
-		ft_put_zero(num);
+		ft_put_zero(num, info);
 		return ;
 	}
-	ft_put_space(num);
+	ft_put_space(num, info);
 }
 
 void			ft_print_percent(t_struct *info)
@@ -30,15 +30,15 @@ void			ft_print_percent(t_struct *info)
 	if (info->width > 0)
 	{
 		ft_print_spaces(info->width - 1, info);
-		write (1, &arg, 1);
+		info->p_len += write(1, &arg, 1);
 		return ;
 	}
 	else if (info->width < 0)
 	{
-		write (1, &arg, 1);
+		info->p_len += write(1, &arg, 1);
 		ft_print_spaces(-info->width - 1, info);
 		return ;
 	}
 	else
-		write (1, &arg, 1);
+		info->p_len += write(1, &arg, 1);
 }

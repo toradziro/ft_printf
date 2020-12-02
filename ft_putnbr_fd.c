@@ -12,14 +12,14 @@
 
 #include "ft_printf.h"
 
-void	ft_putnbr_fd(int n, int fd)
+void	ft_putnbr_fd(int n, int fd, t_struct *info)
 {
 	char			c;
 	unsigned int	nu;
 
 	if (n < 0)
 	{
-		write(fd, "-", 1);
+		info->p_len += write(fd, "-", 1);
 		nu = n * -1;
 	}
 	else
@@ -27,12 +27,12 @@ void	ft_putnbr_fd(int n, int fd)
 	if (nu > 9)
 	{
 		c = nu % 10 + '0';
-		ft_putnbr_fd((nu / 10), fd);
-		write(fd, &c, 1);
+		ft_putnbr_fd((nu / 10), fd, info);
+		info->p_len += write(fd, &c, 1);
 	}
 	if (nu <= 9)
 	{
 		c = nu + '0';
-		write(fd, &c, 1);
+		info->p_len += write(fd, &c, 1);
 	}
 }

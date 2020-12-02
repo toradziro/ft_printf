@@ -30,6 +30,7 @@ int				ft_printf(const char *str, ...)
 
 	ret = 0;
 	i = 0;
+	info.p_len = 0;
 	if (!str)
 		return (0);
 	va_start(info.argument, str);
@@ -37,7 +38,7 @@ int				ft_printf(const char *str, ...)
 	{
 		while (str[i] != '%' && str[i] != '\0')
 		{
-			write(1, &str[i], 1);
+			info.p_len += write(1, &str[i], 1);
 			i++;
 		}
 		if (str[i] == '\0')
@@ -53,7 +54,7 @@ int				ft_printf(const char *str, ...)
 		i++;
 	}
 	va_end(info.argument);
-	return (0);
+	return (info.p_len);
 }
 
 void		ft_check_spec(t_struct *info)

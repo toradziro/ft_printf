@@ -12,20 +12,20 @@
 
 #include "ft_printf.h"
 
-void				ft_put_zero(int n)
+void				ft_put_zero(int n, t_struct *info)
 {
 	while (n > 0)
 	{
-		write(1, "0", 1);
+		info->p_len += write(1, "0", 1);
 		n--;
 	}
 }
 
-void				ft_put_space(int n)
+void				ft_put_space(int n, t_struct *info)
 {
 	while (n > 0)
 	{
-		write(1, " ", 1);
+		info->p_len += write(1, " ", 1);
 		n--;
 	}
 }

@@ -24,6 +24,7 @@ typedef struct		s_struct
 	int				accur;
 	int				width;
 	int				is_zero;
+	int				p_len;
 }					t_struct;
 
 int 			ft_printf(const char *str, ...);
@@ -33,15 +34,15 @@ int				ft_find_elem(char c);
 void			ft_check_spec(t_struct *info);
 void			ft_print_str(t_struct *info);
 int				ft_len(long long int n);
-void			ft_put_zero(int n);
-void			ft_put_space(int n);
+void			ft_put_zero(int n, t_struct *info);
+void			ft_put_space(int n, t_struct *info);
 int				ft_mod(int n);
-void			ft_putstr(char *s, int n);
+void			ft_putstr(char *s, int n, t_struct *info);
 void			ft_print_char(t_struct *info);
 void			ft_print_hex_low(t_struct *info);
 void			ft_print_hex_up(t_struct *info);
 int				ft_atoi(const char *str);
-void			ft_putnbr_fd(int n, int fd);
+void			ft_putnbr_fd(int n, int fd, t_struct *info);
 size_t 			ft_strlen(const char *str);
 void			ft_print_percent(t_struct *info);
 void			ft_print_unsigned(t_struct *info);
