@@ -6,41 +6,33 @@
 /*   By: ehillman <ehillman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/18 20:20:24 by ehillman          #+#    #+#             */
-/*   Updated: 2020/12/01 22:32:57 by ehillman         ###   ########.fr       */
+/*   Updated: 2020/12/05 00:44:41 by ehillman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-** идем по строке и доходим до %, после этого вызываем парсер, который парсит до
-** флага и выставляет значения полей структуры после окончания парса мы возвращ-
-** аем структуру и передаем ее в печать ширины, потом в печать точности и после-
-** вместе с va_list в печать аргумента
-**
-** положительная ширина - это printf("%-10d", 5); "5         "
-** отрицательная ширина - это printf("%10d", 5); "         5"
-*/
-
 #include "ft_printf.h"
+
+int				ft_wr_to_sp(const char *str, int i, t_struct *info)
+{
+	while (str[i] != '%' && str[i] != '\0')
+	{
+		info->p_len += write(1, &str[i], 1);
+		i++;
+	}
+	return (i);
+}
 
 int				ft_printf(const char *str, ...)
 {
-	int			ret;
 	int			i;
 	t_struct	info;
 
-	ret = 0;
 	i = 0;
 	info.p_len = 0;
-	if (!str)
-		return (0);
 	va_start(info.argument, str);
 	while (str[i] != '\0')
 	{
-		while (str[i] != '%' && str[i] != '\0')
-		{
-			info.p_len += write(1, &str[i], 1);
-			i++;
-		}
+		i = ft_wr_to_sp(str, i, &info);
 		if (str[i] == '\0')
 			break ;
 		if (str[i] == '%')
@@ -49,7 +41,7 @@ int				ft_printf(const char *str, ...)
 			info = ft_parse(&str[i], &info);
 			ft_check_spec(&info);
 		}
-		while (!ft_find_elem(str[i]))
+		while (!ft_find_elem(str[i]) && str[i + 1] != '\0')
 			i++;
 		i++;
 	}
@@ -57,7 +49,7 @@ int				ft_printf(const char *str, ...)
 	return (info.p_len);
 }
 
-void		ft_check_spec(t_struct *info)
+void			ft_check_spec(t_struct *info)
 {
 	if (info->flag == 'i' || info->flag == 'd')
 		ft_print_int(info);

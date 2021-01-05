@@ -6,7 +6,7 @@
 /*   By: ehillman <ehillman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/22 14:09:40 by ehillman          #+#    #+#             */
-/*   Updated: 2020/11/27 21:25:22 by ehillman         ###   ########.fr       */
+/*   Updated: 2020/12/04 21:05:20 by ehillman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,34 +30,16 @@ void				ft_put_space(int n, t_struct *info)
 	}
 }
 
-int			ft_len(long long int n)
-{
-	int				len;
-
-	len = 0;
-	if (n == 0)
-		return (1);
-	if (n < 0)
-		len++;
-	while (n != 0)
-	{
-		n /= 10;
-		len++;
-	}
-	return (len);
-}
-
-int				ft_mod(int n)
+long				ft_mod(long n)
 {
 	return ((n > 0) ? n : -n);
 }
 
-int		ft_find_elem(char c)
+int					ft_find_elem(char c)
 {
-	char	*flags;
-	int		i;
+	const char		flags[] = "cspdiuxX%\0";
+	int				i;
 
-	flags = "cspdiuxX%\0";
 	i = 0;
 	while (flags[i] != '\0')
 	{
@@ -66,4 +48,26 @@ int		ft_find_elem(char c)
 		i++;
 	}
 	return (0);
+}
+
+void				ft_putnbr_base(unsigned int n, t_struct *info, int alpha)
+{
+	char			c;
+	unsigned int	nu;
+
+	nu = (unsigned int)n;
+	if (nu > 9)
+	{
+		if (nu % 16 >= 0 && nu % 16 <= 9)
+			c = nu % 16 + '0';
+		else
+			c = alpha + (nu % 16 - 10);
+		ft_putnbr_base(nu / 16, info, alpha);
+		info->p_len += write(1, &c, 1);
+	}
+	if (nu <= 9 && nu > 0)
+	{
+		c = nu + '0';
+		info->p_len += write(1, &c, 1);
+	}
 }

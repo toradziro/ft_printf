@@ -6,11 +6,11 @@
 /*   By: ehillman <ehillman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 01:17:25 by ehillman          #+#    #+#             */
-/*   Updated: 2020/11/06 23:01:13 by ehillman         ###   ########.fr       */
+/*   Updated: 2020/12/04 19:25:03 by ehillman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "libft.h"
+#include "ft_printf.h"
 
 int		ft_atoi(const char *str)
 {
